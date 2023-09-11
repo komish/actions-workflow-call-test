@@ -1,5 +1,5 @@
 {
-  "generated": "2023-09-07T16:00:41.091562-05:00",
+  "generated": "2023-09-11T20:26:07.743807+00:00",
   "packages": {
     "5gdu": "partners/mavenir/5gdu",
     "amf": "partners/mavenir/amf",
@@ -10,6 +10,7 @@
     "du": "partners/mavenir/du",
     "enbdu": "partners/mavenir/enbdu",
     "gatekeeper": "community/redhat/gatekeeper",
+    "gosnappass": "community/concerthall/gosnappass",
     "ibm-b2bi-prod": "partners/ibm/ibm-b2bi-prod",
     "ibm-connect-direct": "partners/ibm/ibm-connect-direct",
     "ibm-object-storage-plugin": "partners/ibm/ibm-object-storage-plugin",
