@@ -1,0 +1,23 @@
+name: Review Lockfile Updates
+
+on:
+  pull_request:
+
+# concurrency:
+#   # Prevent parallel executions of this and related tasks.
+#   group: updating-chart-locks
+#   cancel-in-progress: false
+
+jobs:
+  determine-if-lockfile-update:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/github-script@v6
+      id: read-pr-file-list
+      with:
+        script: |
+          github.rest.pulls.listFiles({
+            context.repo.owner,
+            context.repo.repo,
+            context.issue.number,
+          })
