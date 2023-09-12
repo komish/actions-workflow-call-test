@@ -78,7 +78,7 @@ jobs:
       - name: Determine previous count of packages
         id: get-previous-package-count
         run: |
-          length=$(jq '.packages | length ' < main-branch/docs/lock.json )
+          length=$(jq '.packages | length ' < ${{ env.GITHUB_WORKSPACE }}/main-branch/docs/lock.json )
           echo previous-package-count=$length >> $GITHUB_OUTPUT
       - name: Determine new count of packages
         id: get-new-package-count
