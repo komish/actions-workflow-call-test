@@ -39,7 +39,7 @@ jobs:
 
           const prContributor = pr.data.user.login;
           
-          if ( prContributor !== ${{ env.APPROVED_ACTOR }}) {
+          if ( prContributor !== '${{ env.APPROVED_ACTOR }})' {
             core.setFailed(`User ${prContributor} cannot submit this PR. Approved actor is ${{ env.APPROVED_ACTOR }}`)
             return 1
           }
