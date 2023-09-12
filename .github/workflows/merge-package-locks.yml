@@ -70,16 +70,16 @@ jobs:
     steps:
       - name: Pull PR
         uses: actions/checkout@v4
-      - name: Pull main branch
+      - name: Pull base branch
         uses: actions/checkout@v4
         with:
           ref: gh-pages
-          path: head-of-repo
+          path: base-branch
       - name: Determine previous count of packages
         id: get-previous-package-count
         run: |
           pwd; ls -lah
-          length=$(jq '.packages | length ' < head-of-repo/docs/lock.json )
+          length=$(jq '.packages | length ' < base-branch/docs/lock.json )
           echo previous-package-count=$length >> $GITHUB_OUTPUT
       - name: Determine new count of packages
         id: get-new-package-count
