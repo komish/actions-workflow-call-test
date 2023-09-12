@@ -35,12 +35,12 @@ jobs:
             repo: context.repo.repo,
             owner: context.repo.owner,
             pull_number: context.issue.number,
-          })
+          });
 
-          console.log(JSON.stringify(pr))
-
-          if (pr.user.login !== ${{ env.APPROVED_ACTOR }}) {
-            core.setFailed(`User ${pr.user.login} cannot submit this PR. Approved actor is ${{ env.APPROVED_ACTOR }}`)
+          const prContributor = pr.data.user.login;
+          
+          if ( prContributor !== ${{ env.APPROVED_ACTOR }}) {
+            core.setFailed(`User ${prContributor} cannot submit this PR. Approved actor is ${{ env.APPROVED_ACTOR }}`)
             return 1
           }
     - name: Get files modified in PR  
