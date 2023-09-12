@@ -13,16 +13,25 @@ jobs:
   determine-if-lockfile-update:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/github-script@v6
+    - name: Label PR with automation label
+      uses: actions/github-script@v6
+      with:
+        script: |
+          github.rest.pulls.addLabels({
+            pull_number: context.issue.number,
+            repo: context.repo.repo,
+            owner: context.repo.owner,
+            labels: ['automation']
+          })
+    - name: Get files modified in PR  
+      uses: actions/github-script@v6
       id: read-pr-file-list
       with:
         script: |
-          await console.log(
-            github.rest.pulls.listFiles({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: context.issue.number,
-            })
-          )
+          github.rest.pulls.listFiles({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: context.issue.number,
+          })
 
-          return
+          
