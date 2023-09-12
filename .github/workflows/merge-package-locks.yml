@@ -125,15 +125,3 @@ jobs:
         run: |
           gh pr review --approve --body "LGTM!" ${{ github.event.number }}
           gh pr merge --squash ${{ github.event.number }}
-    
-            
-        
-
-
-        
-
-
-    
-      
-
-          
