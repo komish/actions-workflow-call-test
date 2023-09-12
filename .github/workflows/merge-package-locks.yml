@@ -69,16 +69,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Pull PR
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Pull main branch
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: main
           path: main-branch
       - name: Determine previous count of packages
         id: get-previous-package-count
         run: |
-          length=$(jq '.packages | length ' < ${{ env.GITHUB_WORKSPACE }}/main-branch/docs/lock.json )
+          pwd; ls -lah
+          length=$(jq '.packages | length ' < main-branch/docs/lock.json )
           echo previous-package-count=$length >> $GITHUB_OUTPUT
       - name: Determine new count of packages
         id: get-new-package-count
