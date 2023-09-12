@@ -115,12 +115,16 @@ jobs:
       - sanity-check-contents
     if: needs.sanity-check-contents.result == 'success'
     steps:
-      - name: Merge pull request
+      - name: Pull PR
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+      - name: Approve and Merge PR
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh pr review --approve --body "LGTM!" ${{ github.ref }}
-          gh pr merge ---rebase -squash ${{ github.ref }}
+          gh pr review --approve --body "LGTM!" ${{ github.event.number }}
+          gh pr merge ---rebase -squash ${{ github.event.number }}
     
             
         
