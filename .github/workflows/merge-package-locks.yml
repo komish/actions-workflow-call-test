@@ -39,7 +39,7 @@ jobs:
 
           const prContributor = pr.data.user.login;
           
-          if ( prContributor !== '${{ env.APPROVED_ACTOR }})' {
+          if ( prContributor !== '${{ env.APPROVED_ACTOR }}') {
             core.setFailed(`User ${prContributor} cannot submit this PR. Approved actor is ${{ env.APPROVED_ACTOR }}`)
             return 1
           }
@@ -48,10 +48,12 @@ jobs:
       id: read-pr-file-list
       with:
         script: |
-          github.rest.pulls.listFiles({
+          const listFilesResp = await github.rest.pulls.listFiles({
             owner: context.repo.owner,
             repo: context.repo.repo,
             pull_number: context.issue.number,
-          })
+          });
+
+          console.log(JSON.stringify(listFilesResp.data));
 
           
