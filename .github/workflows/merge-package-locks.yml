@@ -124,7 +124,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh pr review --approve --body "LGTM!" ${{ github.event.number }}
-          gh pr merge --rebase --squash ${{ github.event.number }}
+          gh pr merge --squash ${{ github.event.number }}
     
             
         
