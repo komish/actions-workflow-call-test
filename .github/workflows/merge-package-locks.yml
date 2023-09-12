@@ -3,6 +3,8 @@ name: Review Lockfile Updates
 on:
   pull_request:
     branches: ['*']
+    paths:
+    - 'docs/lock.json'
 
 concurrency:
   # Prevent parallel executions of this and related tasks.
@@ -43,7 +45,9 @@ jobs:
             core.setFailed(`User ${prContributor} cannot submit this PR. Approved actor is ${{ env.APPROVED_ACTOR }}`)
             return 1
           }
-    - name: Get files modified in PR  
+    - name: Ensure only a single file has been modified (sanity)
+      # Sanity check. This action should only trigger when the specified file
+      # is changed and no others, but this makes sure that only a single file was changed.
       uses: actions/github-script@v6
       id: read-pr-file-list
       with:
@@ -54,6 +58,9 @@ jobs:
             pull_number: context.issue.number,
           });
 
-          console.log(JSON.stringify(listFilesResp.data));
+          if (listFilesResp['data'].length > 1) {
+            core.setFailed(`This PR has modified more than one file. This automation expects only a single update.`)
+            return 1
+          }
 
           
