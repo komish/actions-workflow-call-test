@@ -117,11 +117,8 @@ jobs:
     steps:
       - name: Merge pull request
         run: |
-          echo "10/10 would merge!"
-          echo githubref is ${{ github.ref }}
-        # run: |
-        #   gh pr review --approve --body "LGTM!"
-        #   gh pr merge ${{ github.ref }}
+          gh pr review --approve --body "LGTM!" ${{ github.ref }}
+          gh pr merge ---rebase -squash ${{ github.ref }}
     
             
         
