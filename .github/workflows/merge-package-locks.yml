@@ -98,6 +98,31 @@ jobs:
               core.setFailed(`We only expect to gain a single package per PR. The package change count was: "${packageChange}"`)
               return 1
             }
+      - name: Indicate approval
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              repo: context.repo.repo,
+              owner: context.repo.owner,
+              labels: ['automation-lgtm']
+            })
+
+  approve-and-merge:
+    runs-on: ubuntu-latest
+    needs: 
+      - sanity-check-contents
+    if: needs.outcome == 'success'
+    steps:
+      - name: Merge pull request
+        run: |
+          echo "10/10 would merge!"
+          echo githubref is ${{ github.ref }}
+        # run: |
+        #   gh pr review --approve --body "LGTM!"
+        #   gh pr merge ${{ github.ref }}
+    
             
         
 
