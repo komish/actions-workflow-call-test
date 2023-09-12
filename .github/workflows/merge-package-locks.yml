@@ -17,8 +17,8 @@ jobs:
       uses: actions/github-script@v6
       with:
         script: |
-          github.rest.pulls.addLabels({
-            pull_number: context.issue.number,
+          github.rest.issues.addLabels({
+            issue_number: context.issue.number,
             repo: context.repo.repo,
             owner: context.repo.owner,
             labels: ['automation']
