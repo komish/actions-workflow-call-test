@@ -31,6 +31,7 @@ def logInfo(msg, file=sys.stderr):
     """logError just prints the msg with an INFO caption to stderr unless otherwise defined"""
     print(f"[INFO] {msg}", file=file)
 
+
 def logWarn(msg, file=sys.stderr):
     """logWarn just prints the msg with an INFO caption to stderr unless otherwise defined"""
     print(f"[WARN] {msg}", file=file)
@@ -51,7 +52,7 @@ def main():
             )
             continue
             sys.exit(1)
-            
+
         category, organization, chart = matched.groups()
         if category == None or organization == None or chart == None:
             logError(
@@ -80,25 +81,26 @@ def main():
             logError(
                 f"Duplicate chart name detected. Unable to build unique package list. trying to add: {new_entry}, current_value: {packages[chart]}"
             )
-            # sys.exit(2)
+            sys.exit(2)
 
         packages[chart] = new_entry
-
 
     if len(packages.keys()) == 0:
         logError("the package map contained no items!")
         sys.exit(3)
-    
+
     now = datetime.now(timezone.utc).astimezone().isoformat()
-    
+
     print(
         to_json(
             {
                 "generated": now,
                 "packages": packages,
             },
-        sort_keys=True)
+            sort_keys=True,
+        )
     )
+
 
 if __name__ == "__main__":
     main()

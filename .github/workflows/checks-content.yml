@@ -1,0 +1,27 @@
+name: Test Check Content
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, edited, ready_for_review, labeled]
+
+jobs:
+  check-content:
+    name: Check contributor
+    uses: ./.github/workflows/check-contributor.yml
+    if: |
+      github.event.pull_request.draft == false
+    with:
+      user: ${{ github.event.pull_request.user.login }}
+      fail-workflow-if-not: true
+
+  run-after:
+    name: Runs After
+    needs: [check-content]
+    runs-on: ubuntu-20.04
+    if: |
+      github.event.pull_request.draft == false &&
+        needs.check-content.outputs.is-repo-owner == 'true'
+    steps:
+      - run: |
+          echo '${{ toJson(needs.check-content) }}'
+          echo "Woo hoo!"
