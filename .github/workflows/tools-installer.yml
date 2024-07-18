@@ -4,65 +4,74 @@ on:
   workflow_dispatch:
 
 jobs:
-  install-cv-ubuntu-latest-1-11:
+  forked:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '16'
       - name: Install chart-verifier
-        uses: redhat-actions/openshift-tools-installer@v1.11
+        uses: opdev/openshift-tools-installer@v1.11
         with:
           source: github
           skip_cache: true
           chart-verifier: 0.1.0
+  # install-cv-ubuntu-latest-1-11:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/setup-node@v4
+  #       with:
+  #         node-version: '16'
+  #     - name: Install chart-verifier
+  #       uses: redhat-actions/openshift-tools-installer@v1.11
+  #       with:
+  #         source: github
+  #         skip_cache: true
+  #         chart-verifier: 0.1.0
           
 
-  install-oc-ubuntu-latest-1-11:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Install oc
-        uses: redhat-actions/openshift-tools-installer@v1.11
-        with:
-          oc: latest
-          skip_cache: true
+  # install-oc-ubuntu-latest-1-11:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Install oc
+  #       uses: redhat-actions/openshift-tools-installer@v1.11
+  #       with:
+  #         oc: latest
+  #         skip_cache: true
 
-  install-cv-ubuntu-latest:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Install chart-verifier
-        uses: redhat-actions/openshift-tools-installer@v1
-        with:
-          source: github
-          skip_cache: true
-          chart-verifier: 0.1.0
+  # install-cv-ubuntu-latest:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Install chart-verifier
+  #       uses: redhat-actions/openshift-tools-installer@v1
+  #       with:
+  #         source: github
+  #         skip_cache: true
+  #         chart-verifier: 0.1.0
           
 
-  install-oc-ubuntu-latest:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Install oc
-        uses: redhat-actions/openshift-tools-installer@v1
-        with:
-          oc: latest
-          skip_cache: true
+  # install-oc-ubuntu-latest:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Install oc
+  #       uses: redhat-actions/openshift-tools-installer@v1
+  #       with:
+  #         oc: latest
+  #         skip_cache: true
 
-  install-cv-ubuntu-2404:
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Install chart-verifier
-        uses: redhat-actions/openshift-tools-installer@v1
-        with:
-          source: github
-          skip_cache: true
-          chart-verifier: 0.1.0
+  # install-cv-ubuntu-2404:
+  #   runs-on: ubuntu-24.04
+  #   steps:
+  #     - name: Install chart-verifier
+  #       uses: redhat-actions/openshift-tools-installer@v1
+  #       with:
+  #         source: github
+  #         skip_cache: true
+  #         chart-verifier: 0.1.0
           
 
-  install-oc-ubuntu-2404:
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Install oc
-        uses: redhat-actions/openshift-tools-installer@v1
-        with:
-          oc: latest
-          skip_cache: true
+  # install-oc-ubuntu-2404:
+  #   runs-on: ubuntu-24.04
+  #   steps:
+  #     - name: Install oc
+  #       uses: redhat-actions/openshift-tools-installer@v1
+  #       with:
+  #         oc: latest
+  #         skip_cache: true
