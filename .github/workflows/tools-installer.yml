@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install chart-verifier
-        uses: opdev/openshift-tools-installer@latest
+        uses: opdev/openshift-tools-installer@fa9394569e3ed2fd346e60472243a2337e084265
         with:
           source: github
           skip_cache: true
