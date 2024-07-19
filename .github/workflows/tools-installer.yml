@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install chart-verifier
-        uses: komish/openshift-tools-installer@d2a1136fb8bb98373d326ea282dd5cb5b3502f98
+        uses: komish/openshift-tools-installer@471646601ed86d62b9a06a936cffd733eb141f2c
         with:
           source: github
           skip_cache: true
