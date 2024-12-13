@@ -15,6 +15,10 @@ jobs:
         oc: "4"
         helm: "latest"
         odo: "latest"
+    - run: |
+        helm version
+        oc version
+        odo version
 #   install-cv-ubuntu-latest-1-11:
 #     runs-on: ubuntu-latest
 #     steps:
